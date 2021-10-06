@@ -11,6 +11,7 @@ pub struct Task {
 
 pub trait TaskActions {
     fn consume_tasks(&mut self) -> Vec<Command>;
+    fn get_task_list_string(&mut self) -> String;
     fn del_task(&mut self, name: String) -> Vec<Command>;
     fn contains_task_with_name(&mut self, name: String) -> bool;
     fn add_task(&mut self, name: String, exec: String) -> Vec<Command>;
@@ -39,12 +40,6 @@ impl TaskActions for Task {
         self.commands.to_vec()
     }
 
-    fn add_task(&mut self, name: String, exec: String) -> Vec<Command> {
-        let command = Command::new(name, exec);
-        self.commands.push(command);
-        self.commands.to_vec()
-    }
-
     fn contains_task_with_name(&mut self, name: String) -> bool {
         for command in &self.commands {
             if command.name == name {
@@ -53,5 +48,22 @@ impl TaskActions for Task {
         }
 
         false
+    }
+
+    fn add_task(&mut self, name: String, exec: String) -> Vec<Command> {
+        let command = Command::new(name, exec);
+        self.commands.push(command);
+        self.commands.to_vec()
+    }
+
+    fn get_task_list_string(&mut self) -> String {
+        let mut task_list_string = String::new();
+
+        for task in self.consume_tasks() {
+            task_list_string += format!("{task}:\n", task = &task.name).as_str();
+            task_list_string += format!("    {cmd}", cmd = &task.exec).as_str();
+        }
+
+        task_list_string
     }
 }
