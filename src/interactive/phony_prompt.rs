@@ -1,15 +1,14 @@
-use colored::Colorize;
-
 use crate::{
     constants::{
-        ADD_MORE_PHONY_TASKS_PROMPT, ADD_TASKS_TO_PHONY_MESSAGE, ERROR_PHONY_TASK_EXISTS,
-        ERROR_TASK_CANNOT_BE_EMPTY, ERROR_NO_SUCH_TASK_IN_TASK_LIST, PROMPT_ENTER_TASK_NAME,
+        ADD_MORE_PHONY_TASKS_PROMPT, ADD_TASKS_TO_PHONY_MESSAGE, ERROR_NO_SUCH_TASK_IN_TASK_LIST,
+        ERROR_PHONY_TASK_EXISTS, ERROR_TASK_CANNOT_BE_EMPTY, PROMPT_ENTER_TASK_NAME,
     },
     interactive::response_as_bool,
     phony::{Phony, PhonyActions},
     task::{Task, TaskActions},
     utils,
 };
+use colored::Colorize;
 
 pub fn phony_prompt(phony: &mut Phony, tasks: &mut Task) {
     println!("{}", &ADD_TASKS_TO_PHONY_MESSAGE.bold());
@@ -37,8 +36,9 @@ pub fn phony_prompt(phony: &mut Phony, tasks: &mut Task) {
         }
 
         println!("{}", &ADD_MORE_PHONY_TASKS_PROMPT.blue());
-        let finished = response_as_bool();
 
+        let finish_response = utils::get_input();
+        let finished = response_as_bool(finish_response);
         if finished {
             break;
         }

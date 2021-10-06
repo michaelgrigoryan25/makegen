@@ -1,9 +1,8 @@
-#[rustfmt::skip]
 pub const VERSION: &str = "0.0.1";
 pub const PROMPT_ADD_TASKS: &str = "Add tasks";
 pub const SELECTED_PATH_MESSAGE: &str = "Selected path:";
 pub const DEFAULTING_TO_MESSAGE: &str = "Defaulting to:";
-pub const WELCOME_MESSAGE: &str = "Welcome to Makefile generator v";
+pub const WELCOME_MESSAGE: &str = "Makefile generator v";
 pub const ADD_TASKS_TO_PHONY_MESSAGE: &str = "Add tasks to '.PHONY' list";
 pub const DEFAULT_OUT_DIR_MESSAGE: &str = "Output directory(Default: './'):";
 

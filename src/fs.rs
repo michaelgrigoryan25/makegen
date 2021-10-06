@@ -1,7 +1,6 @@
+use crate::constants::ERROR_WRITING_FILE;
 use std::fs::File;
 use std::io::{Result, Write};
-
-use crate::constants::ERROR_WRITING_FILE;
 
 #[derive(Debug, Default, Clone)]
 pub struct FS {
@@ -11,7 +10,7 @@ pub struct FS {
 pub trait FsActions {
     fn get_base_path(&mut self) -> String;
     fn set_base_path(&mut self, path: String);
-    fn write_buffer(&mut self, path: String, data: String) -> Result<usize>;
+    fn write_buffer(&mut self, data: String) -> Result<usize>;
 }
 
 impl FS {
@@ -23,17 +22,17 @@ impl FS {
 }
 
 impl FsActions for FS {
+    fn get_base_path(&mut self) -> String {
+        self.base_path.to_owned()
+    }
+
     fn set_base_path(&mut self, path: String) {
         self.base_path = path;
     }
 
-    fn write_buffer(&mut self, path: String, data: String) -> Result<usize> {
-        File::create(&path)
+    fn write_buffer(&mut self, data: String) -> Result<usize> {
+        File::create(&self.base_path)
             .expect(ERROR_WRITING_FILE)
             .write(data.as_bytes())
-    }
-
-    fn get_base_path(&mut self) -> String {
-        self.base_path.to_owned()
     }
 }
