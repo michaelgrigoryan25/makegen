@@ -10,7 +10,7 @@ pub struct FS {
 
 pub trait FsActions {
     fn get_base_path(&mut self) -> String;
-    fn set_base_path(&mut self, path: String) -> ();
+    fn set_base_path(&mut self, path: String);
     fn write_buffer(&mut self, path: String, data: String) -> Result<usize>;
 }
 
@@ -23,13 +23,13 @@ impl FS {
 }
 
 impl FsActions for FS {
-    fn set_base_path(&mut self, path: String) -> () {
+    fn set_base_path(&mut self, path: String) {
         self.base_path = path;
     }
 
     fn write_buffer(&mut self, path: String, data: String) -> Result<usize> {
         File::create(&path)
-            .expect(&ERROR_WRITING_FILE)
+            .expect(ERROR_WRITING_FILE)
             .write(data.as_bytes())
     }
 

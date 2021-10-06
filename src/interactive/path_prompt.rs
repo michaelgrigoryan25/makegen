@@ -12,7 +12,7 @@ pub fn path_prompt(fs: &mut FS) {
     let base_path = utils::get_input();
 
     // Defaulting to base path provided by `fs`
-    if base_path.len() != 0 {
+    if base_path.is_empty() {
         fs.set_base_path(base_path.trim().to_owned());
         println!(
             "{msg} '{path}'",

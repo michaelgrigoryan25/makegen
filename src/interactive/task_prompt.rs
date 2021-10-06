@@ -20,7 +20,7 @@ pub fn task_prompt(tasks: &mut Task) {
 
         // Getting task name
         let task_name = utils::get_input();
-        if task_name.len() == 0 {
+        if task_name.is_empty() {
             println!("{}", &ERROR_TASK_CANNOT_BE_EMPTY.red().bold());
             continue;
         }
@@ -29,7 +29,7 @@ pub fn task_prompt(tasks: &mut Task) {
 
         // Getting task command
         let command = utils::get_input();
-        if command.len() == 0 {
+        if command.is_empty() {
             println!("{}", &ERROR_COMMAND_CANNOT_BE_EMPTY.red().bold());
             continue;
         }

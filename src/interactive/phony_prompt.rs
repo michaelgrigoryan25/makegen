@@ -20,7 +20,7 @@ pub fn phony_prompt(phony: &mut Phony, tasks: &mut Task) {
         let task_name = utils::get_input();
 
         // If task name is empty
-        if task_name.len() == 0 {
+        if task_name.is_empty() {
             println!("{}", &ERROR_TASK_CANNOT_BE_EMPTY.red().bold());
             continue;
         } else {
