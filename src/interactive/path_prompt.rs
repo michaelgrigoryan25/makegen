@@ -1,12 +1,12 @@
 use crate::{
     constants::{DEFAULTING_TO_MESSAGE, DEFAULT_OUT_DIR_MESSAGE, SELECTED_PATH_MESSAGE},
-    fs::{FsActions, FS},
+    filesystem::{FileSystem, FileSystemActions},
     utils,
 };
 use colored::Colorize;
 
 // Prompt for getting the desired path from the user
-pub fn path_prompt(fs: &mut FS) {
+pub fn path_prompt(fs: &mut FileSystem) {
     println!("{}", &DEFAULT_OUT_DIR_MESSAGE.blue());
 
     // Getting and setting the base directory
