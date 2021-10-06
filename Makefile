@@ -6,8 +6,8 @@ run: build
 build:
 	cargo build
 
-install:
-	cargo install
-
 check:
 	cargo check
+
+install:
+	cargo install --path .

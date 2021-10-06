@@ -1,8 +1,5 @@
-#[allow(unused_imports)]
-use crate::constants::{
-    ERROR_ACCESS_DENIED, ERROR_CONVERTING_PATHBUF, ERROR_OPENING_FILE, ERROR_WRITING_FILE,
-    GENERATED_BY_MAKEGEN_COMMENT,
-};
+use crate::constants::FILE_MAKEFILE_DEFAULT_NAME;
+use crate::constants::{ERROR_OPENING_FILE, ERROR_WRITING_FILE, FILE_COMMENT_GENERATED_BY_MAKEGEN};
 use crate::utils::dir_path_as_string;
 use std::fs::OpenOptions;
 use std::io::Write;
@@ -21,7 +18,7 @@ pub trait FileSystemActions {
 impl FileSystem {
     pub fn new() -> FileSystem {
         FileSystem {
-            base_path: dir_path_as_string(),
+            base_path: format!("{}/{}", dir_path_as_string(), &FILE_MAKEFILE_DEFAULT_NAME),
         }
     }
 }
@@ -37,16 +34,14 @@ impl FileSystemActions for FileSystem {
 
     fn write_buffer(&mut self, data: &mut String) {
         let mut file = OpenOptions::new()
-            .create(true)
-            .append(true)
             .write(true)
+            .create(true)
             .open(&self.get_base_path())
             .expect(ERROR_OPENING_FILE);
 
-        file.write_all(GENERATED_BY_MAKEGEN_COMMENT.as_bytes())
+        file.write_all(FILE_COMMENT_GENERATED_BY_MAKEGEN.as_bytes())
             .expect(ERROR_WRITING_FILE);
-        file.write_all('\n'.to_string().as_bytes())
-            .expect(ERROR_WRITING_FILE);
+        file.write_all("\n\n".to_string().as_bytes()).expect(ERROR_WRITING_FILE);
         file.write_all(data.as_bytes()).expect(ERROR_WRITING_FILE);
     }
 }

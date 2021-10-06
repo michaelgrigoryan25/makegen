@@ -1,14 +1,13 @@
 pub const VERSION: &str = "0.0.1";
-pub const PROMPT_ADD_TASKS: &str = "Add tasks";
-pub const SELECTED_PATH_MESSAGE: &str = "Selected path:";
-pub const DEFAULTING_TO_MESSAGE: &str = "Defaulting to:";
-pub const WELCOME_MESSAGE: &str = "Makefile generator v";
-pub const ADD_TASKS_TO_PHONY_MESSAGE: &str = "Add tasks to '.PHONY' list";
-pub const DEFAULT_OUT_DIR_MESSAGE: &str = "Output directory(Default: './'):";
 
-pub const MAKEFILE_FILENAME: &str = "Makefile";
-pub const PROMPT_ENTER_TASK_NAME: &str = "Enter task name: ";
-pub const PROMPT_ENTER_TASK_COMMAND: &str = "Enter the command that you want to execute with this task։ ";
+pub const MESSAGE_SELECTED_PATH: &str = "Selected path:";
+pub const MESSAGE_WELCOME_LOG: &str = "Makefile generator v";
+pub const MESSAGE_DEFAULTING_TO_PATH: &str = "Defaulting to:";
+pub const MESSAGE_ADD_TASKS_TO_PHONY: &str = "Add tasks to '.PHONY' list";
+pub const MESSAGE_DEFAULT_OUT_DIR: &str = "Output directory(Default: './'):";
+
+pub const FILE_MAKEFILE_DEFAULT_NAME: &str = "Makefile";
+pub const FILE_COMMENT_GENERATED_BY_MAKEGEN: &str = "# This file was generated using the `makegen` cli tool";
 
 pub const ERROR_TASK_CANNOT_BE_EMPTY: &str = "Task name can't be empty";
 pub const ERROR_COMMAND_CANNOT_BE_EMPTY: &str = "Command can't be empty";
@@ -21,7 +20,9 @@ pub const ERROR_ACCESS_DENIED: &str = "Access denied for writing the file at the
 pub const ERROR_CONVERTING_PATHBUF: &str = "There was an error while converting 'PathBuf' to String";
 pub const ERROR_PHONY_TASK_EXISTS: &str = "'.PHONY' task with name {} has already been added to the list";
 
-pub const FINISH_ADDING_TASKS_MESSAGE: &str = "Do you want to finish adding tasks? (Y/n)";
-pub const ADD_MORE_PHONY_TASKS_PROMPT: &str = "Do you want to add more tasks to '.PHONY' list? (Y/n)";
-
-pub const GENERATED_BY_MAKEGEN_COMMENT: &str = "# This file was generated using the `makegen` cli tool";
+pub const PROMPT_ADD_TASKS: &str = "Add tasks";
+pub const PROMPT_ENTER_TASK_NAME: &str = "Enter task name: ";
+pub const PROMPT_ADD_PHONY_TASKS: &str = "Do you want to add tasks to '.PHONY' list";
+pub const PROMPT_CONTINUE_ADDING_TASKS: &str = "Do you want to continue adding tasks? (Y/n)";
+pub const PROMPT_ADD_MORE_PHONY_TASKS: &str = "Do you want to add more tasks to '.PHONY' list? (Y/n)";
+pub const PROMPT_ENTER_TASK_COMMAND: &str = "Enter the command that you want to execute with this task։ ";

@@ -1,8 +1,7 @@
-use crate::constants::{
-    ERROR_ACCESS_DENIED, ERROR_CONVERTING_PATHBUF, ERROR_READING_LINE, MAKEFILE_FILENAME,
-};
-use std::{env, fs, io};
+use crate::constants::{ERROR_ACCESS_DENIED, ERROR_CONVERTING_PATHBUF, ERROR_READING_LINE, FILE_MAKEFILE_DEFAULT_NAME};
+use std::{env, fs::OpenOptions, io};
 
+// For getting clean, trimmed input from the terminal
 pub fn get_input() -> String {
     let mut input = String::new();
 
@@ -10,6 +9,7 @@ pub fn get_input() -> String {
     input.trim().to_string()
 }
 
+// For getting current path as string
 pub fn dir_path_as_string() -> String {
     env::current_dir()
         .expect(ERROR_ACCESS_DENIED)
@@ -18,15 +18,10 @@ pub fn dir_path_as_string() -> String {
         .to_string()
 }
 
+// For checking if there is an existing makefile in current workspace
 pub fn check_make_exists() -> bool {
     let path = dir_path_as_string();
-    let dir = fs::read_dir(path).expect(ERROR_ACCESS_DENIED).flatten();
-
-    for i in dir {
-        if i.file_name() == MAKEFILE_FILENAME {
-            return true;
-        }
-    }
-
-    false
+    // Getting the Makefile in current workspace
+    let makefile_path = format!("{}/{}", &path, &FILE_MAKEFILE_DEFAULT_NAME);
+    OpenOptions::new().read(true).open(&makefile_path).is_ok()
 }

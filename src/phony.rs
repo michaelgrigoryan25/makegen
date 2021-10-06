@@ -22,16 +22,17 @@ impl PhonyActions for Phony {
         self.tasks.to_owned()
     }
 
-    #[allow(unused_must_use)]
     fn del_phony(&mut self, task: String) -> Vec<String> {
-        self.tasks.iter().filter(|&t| &task != t);
-        self.tasks.to_owned()
+        self.tasks
+            .to_owned()
+            .into_iter()
+            .filter(|t| task != *t)
+            .collect::<Vec<String>>()
     }
 
     fn get_phony_list_string(&mut self) -> String {
         let mut phony_list_string = String::from(".PHONY: ");
         self.tasks.iter().for_each(|task| phony_list_string += task);
-
         phony_list_string
     }
 

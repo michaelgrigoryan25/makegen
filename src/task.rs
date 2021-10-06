@@ -2,6 +2,7 @@
 pub struct Command {
     name: String,
     exec: String,
+    depends_on: Option<String>,
 }
 
 #[derive(Debug, Clone, Default, PartialEq, Eq)]
@@ -10,7 +11,7 @@ pub struct Task {
 }
 
 pub trait TaskActions {
-    fn consume_tasks(&mut self) -> Vec<Command>;
+    fn consume_task_list(&mut self) -> Vec<Command>;
     fn get_task_list_string(&mut self) -> String;
     fn del_task(&mut self, name: String) -> Vec<Command>;
     fn contains_task_with_name(&mut self, name: String) -> bool;
@@ -25,12 +26,16 @@ impl Task {
 
 impl Command {
     pub fn new(name: String, exec: String) -> Command {
-        Command { name, exec }
+        Command {
+            name,
+            exec,
+            depends_on: None,
+        }
     }
 }
 
 impl TaskActions for Task {
-    fn consume_tasks(&mut self) -> Vec<Command> {
+    fn consume_task_list(&mut self) -> Vec<Command> {
         self.commands.to_vec()
     }
 
@@ -59,9 +64,9 @@ impl TaskActions for Task {
     fn get_task_list_string(&mut self) -> String {
         let mut task_list_string = String::new();
 
-        for task in self.consume_tasks() {
-            task_list_string += format!("{task}:\n", task = &task.name).as_str();
-            task_list_string += format!("    {cmd}", cmd = &task.exec).as_str();
+        for task in self.consume_task_list() {
+            task_list_string += format!("\n\n{task}:\n", task = &task.name).as_str();
+            task_list_string += format!("\t{cmd}", cmd = &task.exec).as_str();
         }
 
         task_list_string

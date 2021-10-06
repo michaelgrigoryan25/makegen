@@ -1,10 +1,7 @@
-use crate::constants::{VERSION, WELCOME_MESSAGE};
+use crate::constants::{MESSAGE_WELCOME_LOG, VERSION};
 use colored::Colorize;
 
 // Initial logging
 pub fn welcome_log() {
-    println!(
-        "{}",
-        format!("{}{}", &WELCOME_MESSAGE, &VERSION).green().bold()
-    );
+    println!("{}", format!("{}{}", &MESSAGE_WELCOME_LOG, &VERSION).green().bold());
 }
