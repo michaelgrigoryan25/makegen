@@ -1,4 +1,4 @@
-use crate::constants::ERROR_MAKEFILE_EXISTS;
+use crate::constants::{ERROR_MAKEFILE_EXISTS, MESSAGE_MAKEFILE_GENERATED};
 use colored::Colorize;
 use filesystem::FileSystem;
 use generator::{Generator, GeneratorActions};
@@ -35,6 +35,9 @@ fn main() {
     interactive::task_prompt(&mut tasks);
     // Adding tasks to '.PHONY' list
     interactive::phony_prompt(&mut phony, &mut tasks);
+
     // Generating a Makefile
     generator.generate(&mut tasks, &mut phony, &mut fs);
+
+    println!("{}", &MESSAGE_MAKEFILE_GENERATED.green())
 }

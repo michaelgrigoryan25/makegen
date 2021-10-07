@@ -5,6 +5,7 @@ pub const MESSAGE_OUTPUT_DIR: &str = "Output directory:";
 pub const MESSAGE_WELCOME_LOG: &str = "Makefile generator v";
 pub const MESSAGE_DEFAULTING_TO_PATH: &str = "Defaulting to:";
 pub const MESSAGE_ADD_TASKS_TO_PHONY: &str = "Add tasks to '.PHONY' list";
+pub const MESSAGE_MAKEFILE_GENERATED: &str = "Makefile has been generated successfully";
 
 pub const FILE_MAKEFILE_DEFAULT_NAME: &str = "Makefile";
 pub const FILE_COMMENT_GENERATED_BY_MAKEGEN: &str = "# This file was generated using the `makegen` cli tool";
