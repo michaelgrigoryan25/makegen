@@ -1,10 +1,10 @@
 pub const VERSION: &str = "0.0.1";
 
 pub const MESSAGE_SELECTED_PATH: &str = "Selected path:";
+pub const MESSAGE_OUTPUT_DIR: &str = "Output directory:";
 pub const MESSAGE_WELCOME_LOG: &str = "Makefile generator v";
 pub const MESSAGE_DEFAULTING_TO_PATH: &str = "Defaulting to:";
 pub const MESSAGE_ADD_TASKS_TO_PHONY: &str = "Add tasks to '.PHONY' list";
-pub const MESSAGE_DEFAULT_OUT_DIR: &str = "Output directory(Default: './'):";
 
 pub const FILE_MAKEFILE_DEFAULT_NAME: &str = "Makefile";
 pub const FILE_COMMENT_GENERATED_BY_MAKEGEN: &str = "# This file was generated using the `makegen` cli tool";
@@ -22,7 +22,7 @@ pub const ERROR_PHONY_TASK_EXISTS: &str = "'.PHONY' task with name {} has alread
 
 pub const PROMPT_ADD_TASKS: &str = "Add tasks";
 pub const PROMPT_ENTER_TASK_NAME: &str = "Enter task name: ";
-pub const PROMPT_ADD_PHONY_TASKS: &str = "Do you want to add tasks to '.PHONY' list";
+pub const PROMPT_ADD_PHONY_TASKS: &str = "Do you want to add tasks to '.PHONY' list (Y/n)";
 pub const PROMPT_CONTINUE_ADDING_TASKS: &str = "Do you want to continue adding tasks? (Y/n)";
 pub const PROMPT_ADD_MORE_PHONY_TASKS: &str = "Do you want to add more tasks to '.PHONY' list? (Y/n)";
 pub const PROMPT_ENTER_TASK_COMMAND: &str = "Enter the command that you want to execute with this task։ ";

@@ -1,5 +1,5 @@
 use crate::constants::{ERROR_ACCESS_DENIED, ERROR_CONVERTING_PATHBUF, ERROR_READING_LINE, FILE_MAKEFILE_DEFAULT_NAME};
-use std::{env, fs::OpenOptions, io};
+use std::{env, fs::OpenOptions, io, path::PathBuf};
 
 // For getting clean, trimmed input from the terminal
 pub fn get_input() -> String {
@@ -13,6 +13,17 @@ pub fn get_input() -> String {
 pub fn dir_path_as_string() -> String {
     env::current_dir()
         .expect(ERROR_ACCESS_DENIED)
+        .to_str()
+        .expect(ERROR_CONVERTING_PATHBUF)
+        .to_string()
+}
+
+// For getting a valid path from current workspace
+pub fn get_file_path_from_current_dir(path: String) -> String {
+    let dir = dir_path_as_string();
+    let file_dir = format!("{}/{}", &dir, &path);
+
+    PathBuf::from(&file_dir)
         .to_str()
         .expect(ERROR_CONVERTING_PATHBUF)
         .to_string()
