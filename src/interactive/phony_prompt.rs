@@ -18,7 +18,7 @@ pub fn phony_prompt(phony: &mut Phony, tasks: &mut Task) {
 
     loop {
         // Adding tasks to '.PHONY' list is not necessary
-        logger.log(&PROMPT_ADD_PHONY_TASKS);
+        logger.warn(&PROMPT_ADD_PHONY_TASKS);
 
         let add_tasks_raw = utils::get_input();
         let add_tasks = response_as_bool(add_tasks_raw);
@@ -26,7 +26,7 @@ pub fn phony_prompt(phony: &mut Phony, tasks: &mut Task) {
         // If the user wants to add tasks to the '.PHONY' list
         if add_tasks {
             loop {
-                logger.info(&PROMPT_ENTER_TASK_NAME);
+                logger.log(&PROMPT_ENTER_TASK_NAME);
                 let task_name = utils::get_input();
 
                 // If task name is empty
@@ -50,7 +50,7 @@ pub fn phony_prompt(phony: &mut Phony, tasks: &mut Task) {
                 // Adding the task to `.PHONY` list
                 phony.add_phony(task_name);
 
-                logger.info(&PROMPT_ADD_MORE_PHONY_TASKS);
+                logger.warn(&PROMPT_ADD_MORE_PHONY_TASKS);
                 let should_continue_raw = utils::get_input();
                 let should_continue = response_as_bool(should_continue_raw);
                 if !should_continue {

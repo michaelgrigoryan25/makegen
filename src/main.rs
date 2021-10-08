@@ -29,7 +29,7 @@ fn main() {
     // Checking if Makefile already exists in current directory
     let exists = check_make_exists();
     if exists {
-        return logger.log(&ERROR_MAKEFILE_EXISTS);
+        return logger.error(&ERROR_MAKEFILE_EXISTS);
     }
 
     // Getting base path

@@ -12,8 +12,7 @@ pub fn path_prompt(fs: &mut FileSystem) {
     let logger = Logger::new();
     let current_dir = dir_path_as_string();
 
-    logger.info(&MESSAGE_OUTPUT_DIR);
-    logger.info(&MESSAGE_DEFAULTING_TO_PATH);
+    logger.warn(&MESSAGE_OUTPUT_DIR);
 
     // Getting and setting the base directory
     let base_path = utils::get_input();
@@ -29,9 +28,9 @@ pub fn path_prompt(fs: &mut FileSystem) {
 
         // Setting output path
         fs.set_base_path(base_path_formatted.to_owned());
-        logger.info(&message);
+        logger.success(&message);
     } else {
         let message = format!("{msg} '{path}'", msg = &MESSAGE_DEFAULTING_TO_PATH, path = &current_dir);
-        logger.info(&message);
+        logger.success(&message);
     }
 }
