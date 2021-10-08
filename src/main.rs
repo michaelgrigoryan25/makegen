@@ -1,10 +1,12 @@
-use crate::constants::{ERROR_MAKEFILE_EXISTS, MESSAGE_MAKEFILE_GENERATED};
-use colored::Colorize;
+use crate::constants::ERROR_MAKEFILE_EXISTS;
 use filesystem::FileSystem;
 use generator::{Generator, GeneratorActions};
 use phony::Phony;
 use task::Task;
-use utils::check_make_exists;
+use utils::{
+    check_make_exists,
+    logger::{Logger, LoggerActions},
+};
 
 mod constants;
 mod filesystem;
@@ -15,6 +17,7 @@ mod task;
 mod utils;
 
 fn main() {
+    let logger = Logger::new();
     let mut tasks = Task::new();
     let mut phony = Phony::new();
     let mut fs = FileSystem::new();
@@ -26,7 +29,7 @@ fn main() {
     // Checking if Makefile already exists in current directory
     let exists = check_make_exists();
     if exists {
-        return println!("{}", ERROR_MAKEFILE_EXISTS.red().bold());
+        return logger.log(&ERROR_MAKEFILE_EXISTS);
     }
 
     // Getting base path
@@ -38,6 +41,4 @@ fn main() {
 
     // Generating a Makefile
     generator.generate(&mut tasks, &mut phony, &mut fs);
-
-    println!("{}", &MESSAGE_MAKEFILE_GENERATED.green())
 }

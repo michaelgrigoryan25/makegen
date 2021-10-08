@@ -1,6 +1,6 @@
 use crate::constants::PREFIX_PHONY_LIST;
 
-#[derive(Debug, Clone, Default, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Debug, Clone, Default)]
 pub struct Phony {
     tasks: Vec<String>,
 }
@@ -19,20 +19,9 @@ impl Phony {
 }
 
 impl PhonyActions for Phony {
-    fn add_phony(&mut self, task: String) -> Vec<String> {
-        self.tasks.push(task);
-        self.tasks.to_owned()
-    }
-
-    fn del_phony(&mut self, task: String) -> Vec<String> {
-        self.tasks
-            .to_owned()
-            .into_iter()
-            .filter(|t| task != *t)
-            .collect::<Vec<String>>()
-    }
-
+    // For getting `.PHONY` list as a string
     fn get_phony_list_string(&mut self) -> String {
+        // Prefixing the file with auto generated comment
         let mut phony_list_string = String::from(PREFIX_PHONY_LIST);
 
         for task in &self.tasks {
@@ -42,7 +31,23 @@ impl PhonyActions for Phony {
         phony_list_string
     }
 
+    // For using the vector of tasks
     fn consume_phony_list(&mut self) -> Vec<String> {
         self.tasks.to_vec()
+    }
+
+    // For adding a task to `.PHONY` list
+    fn add_phony(&mut self, task: String) -> Vec<String> {
+        self.tasks.push(task);
+        self.tasks.to_owned()
+    }
+
+    // For removing a task from `.PHONY` list
+    fn del_phony(&mut self, task: String) -> Vec<String> {
+        self.tasks
+            .to_owned()
+            .into_iter()
+            .filter(|t| task != *t)
+            .collect::<Vec<String>>()
     }
 }

@@ -1,6 +1,8 @@
 use crate::constants::{ERROR_ACCESS_DENIED, ERROR_CONVERTING_PATHBUF, ERROR_READING_LINE, FILE_MAKEFILE_DEFAULT_NAME};
 use std::{env, fs::OpenOptions, io, path::PathBuf};
 
+pub mod logger;
+
 // For getting clean, trimmed input from the terminal
 pub fn get_input() -> String {
     let mut input = String::new();

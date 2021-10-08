@@ -5,40 +5,42 @@ use crate::{
     },
     interactive::response_as_bool,
     task::{Task, TaskActions},
-    utils,
+    utils::{
+        self,
+        logger::{Logger, LoggerActions},
+    },
 };
-use colored::Colorize;
 
 // Prompt for adding tasks
-// TODO: Add dependency handling
 pub fn task_prompt(tasks: &mut Task) {
-    #[allow(unused_variables, unused_mut)]
-    let mut is_first_task = true;
+    // #[allow(unused_variables, unused_mut)]
+    // let mut is_first_task = true;
+    let logger = Logger::new();
 
-    println!("{}", &PROMPT_ADD_TASKS.bold());
+    logger.log(&PROMPT_ADD_TASKS);
 
     loop {
         // Getting task name
-        println!("{}", &PROMPT_ENTER_TASK_NAME.blue().bold());
+        logger.info(&PROMPT_ENTER_TASK_NAME);
 
         let task_name = utils::get_input();
         if task_name.is_empty() {
-            println!("{}", &ERROR_TASK_CANNOT_BE_EMPTY.red().bold());
+            logger.error(&ERROR_TASK_CANNOT_BE_EMPTY);
             continue;
         }
 
         // Getting task command
-        println!("{}", &PROMPT_ENTER_TASK_COMMAND.blue().bold());
+        logger.info(&PROMPT_ENTER_TASK_COMMAND);
         let command = utils::get_input();
         if command.is_empty() {
-            println!("{}", &ERROR_COMMAND_CANNOT_BE_EMPTY.red().bold());
+            logger.error(&ERROR_COMMAND_CANNOT_BE_EMPTY);
             continue;
         }
 
         // Adding the task to the list
         tasks.add_task(task_name, command);
 
-        println!("{}", &PROMPT_CONTINUE_ADDING_TASKS.blue().bold());
+        logger.info(&PROMPT_CONTINUE_ADDING_TASKS);
 
         let yes_raw = utils::get_input();
         let yes = response_as_bool(yes_raw.to_owned());
