@@ -1,3 +1,5 @@
+use crate::constants::PREFIX_PHONY_LIST;
+
 #[derive(Debug, Clone, Default, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Phony {
     tasks: Vec<String>,
@@ -31,8 +33,12 @@ impl PhonyActions for Phony {
     }
 
     fn get_phony_list_string(&mut self) -> String {
-        let mut phony_list_string = String::from(".PHONY: ");
-        self.tasks.iter().for_each(|task| phony_list_string += task);
+        let mut phony_list_string = String::from(PREFIX_PHONY_LIST);
+
+        for task in &self.tasks {
+            phony_list_string += task;
+        }
+
         phony_list_string
     }
 

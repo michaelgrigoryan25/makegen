@@ -1,7 +1,13 @@
 [package]
+license = "MIT"
 name = "makegen"
-version = "0.1.0"
 edition = "2018"
+version = "0.1.0"
+readme = "README.md"
+description = "Generate Makefiles from your terminal!"
+repository = "https://github.com/michaelgrigoryan25/makegen"
+homepage = "https://github.com/michaelgrigoryan25/makegen#README.md"
+keywords = ["Makefile", "generator", "cli", "command-line", "terminal"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

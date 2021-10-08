@@ -43,8 +43,10 @@ pub fn phony_prompt(phony: &mut Phony, tasks: &mut Task) {
                     }
                 }
 
-                println!("{}", &PROMPT_ADD_MORE_PHONY_TASKS.blue().bold());
+                // Adding the task to `.PHONY` list
+                phony.add_phony(task_name);
 
+                println!("{}", &PROMPT_ADD_MORE_PHONY_TASKS.blue().bold());
                 let should_continue_raw = utils::get_input();
                 let should_continue = response_as_bool(should_continue_raw);
                 if !should_continue {

@@ -41,7 +41,6 @@ impl FileSystemActions for FileSystem {
 
         file.write_all(FILE_COMMENT_GENERATED_BY_MAKEGEN.as_bytes())
             .expect(ERROR_WRITING_FILE);
-        file.write_all("\n\n".to_string().as_bytes()).expect(ERROR_WRITING_FILE);
         file.write_all(data.as_bytes()).expect(ERROR_WRITING_FILE);
     }
 }

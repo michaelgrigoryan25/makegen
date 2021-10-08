@@ -21,6 +21,8 @@ pub const ERROR_ACCESS_DENIED: &str = "Access denied for writing the file at the
 pub const ERROR_CONVERTING_PATHBUF: &str = "There was an error while converting 'PathBuf' to String";
 pub const ERROR_PHONY_TASK_EXISTS: &str = "'.PHONY' task with name {} has already been added to the list";
 
+pub const PREFIX_PHONY_LIST: &str = ".PHONY: ";
+
 pub const PROMPT_ADD_TASKS: &str = "Add tasks";
 pub const PROMPT_ENTER_TASK_NAME: &str = "Enter task name: ";
 pub const PROMPT_ADD_PHONY_TASKS: &str = "Do you want to add tasks to '.PHONY' list (Y/n)";
