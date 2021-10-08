@@ -27,16 +27,16 @@ impl GeneratorActions for Generator {
 
         if !phony.consume_phony_list().is_empty() {
             let phony_list_string = phony.get_phony_list_string();
-            data += &format!("\n{}", &phony_list_string).to_string();
+            data += &format!("\n{}", &phony_list_string);
         }
 
         if !tasks.consume_task_list().is_empty() {
             let task_list_string = tasks.get_task_list_string();
-            data += &format!("\n{}", task_list_string).to_string();
+            data += &format!("\n{}", task_list_string);
         }
 
         // Creating the file
         fs.write_buffer(&mut data);
-        self.logger.success(&MESSAGE_MAKEFILE_GENERATED);
+        self.logger.success(MESSAGE_MAKEFILE_GENERATED);
     }
 }
